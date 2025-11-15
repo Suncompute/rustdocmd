@@ -34,10 +34,8 @@ fn main() -> Result<()> {
     let config = RustdocmdConfig::from_file(&cli.config)?;
     let source_dir = &config.paths.source;
     let target_dir = &config.paths.target;
-    let summary_path = Path::new(target_dir)
-        .parent()
-        .unwrap_or(Path::new(target_dir))
-        .join("SUMMARY.md");
+    // mdBook erwartet die SUMMARY.md im src/-Ordner
+    let summary_path = Path::new(target_dir).join("SUMMARY.md");
 
     // Zielverzeichnis sicherstellen (sofern nicht dry-run)
     if !cli.dry_run {
