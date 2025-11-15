@@ -9,3 +9,4 @@ anyhow = "1"
 walkdir = "2"
 toml = "0.8"
 serde = { version = "1", features = ["derive"] }
+mdbook = "0.4.52"

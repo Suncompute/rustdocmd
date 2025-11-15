@@ -1,0 +1,1 @@
+/home/bruno/rustdocmd/rustdocmd/target/release/rustdocmd: /home/bruno/rustdocmd/rustdocmd/src/config.rs /home/bruno/rustdocmd/rustdocmd/src/main.rs /home/bruno/rustdocmd/rustdocmd/src/parser.rs /home/bruno/rustdocmd/rustdocmd/src/writer.rs

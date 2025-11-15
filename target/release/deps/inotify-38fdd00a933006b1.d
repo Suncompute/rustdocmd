@@ -1,0 +1,12 @@
+/home/bruno/rustdocmd/rustdocmd/target/release/deps/inotify-38fdd00a933006b1.d: /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/lib.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/events.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/fd_guard.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/inotify.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/util.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/watches.rs
+
+/home/bruno/rustdocmd/rustdocmd/target/release/deps/libinotify-38fdd00a933006b1.rlib: /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/lib.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/events.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/fd_guard.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/inotify.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/util.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/watches.rs
+
+/home/bruno/rustdocmd/rustdocmd/target/release/deps/libinotify-38fdd00a933006b1.rmeta: /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/lib.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/events.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/fd_guard.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/inotify.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/util.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/watches.rs
+
+/home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/lib.rs:
+/home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/events.rs:
+/home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/fd_guard.rs:
+/home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/inotify.rs:
+/home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/util.rs:
+/home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/inotify-0.11.0/src/watches.rs:

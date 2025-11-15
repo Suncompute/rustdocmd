@@ -19,13 +19,37 @@
 5. Aktualisiere `SUMMARY.md` entsprechend der Marker-Reihenfolge
 6. Entferne `.md`-Dateien und zugehörige Einträge aus der `SUMMARY.md`, wenn die Marker im Quellcode nicht mehr vorhanden sind
 
-## Workflows & Befehle
 **Initiales Setup:**
 ```bash
 cargo new rustdocmd --bin
 cargo add clap --features derive
 cargo add anyhow
 cargo add walkdir
+```
+
+## mdBook-Installation & Nutzung
+
+**mdBook installieren:**
+```bash
+cargo install mdbook
+```
+
+**mdBook-Projekt initialisieren:**
+```bash
+mdbook init mdbook --title "rustdocmd Dokumentation"
+```
+Das erzeugt im Ordner `mdbook/` die Grundstruktur für die Dokumentation. Die von rustdocmd generierten `.md`-Dateien werden in `mdbook/src/` abgelegt.
+
+**mdBook lokal bauen und anzeigen:**
+```bash
+cd mdbook
+mdbook serve
+```
+Danach ist die Dokumentation unter http://localhost:3000 erreichbar.
+
+**Automatische mdBook-Installation:**
+Es ist möglich, beim ersten Start von rustdocmd zu prüfen, ob `mdbook` installiert ist, und ggf. mit `cargo install mdbook` nachzuinstallieren (z.B. via `std::process::Command`).
+Empfohlen wird aber, die Installation als Schritt in der Projektanleitung zu dokumentieren und nicht automatisch im Binary auszuführen, da dies Rechte und Toolchain-Voraussetzungen voraussetzt.
 ```
 
 **Build & Test:**
