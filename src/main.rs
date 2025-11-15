@@ -69,6 +69,17 @@ fn main() -> Result<()> {
 
     // Markdown-Dateien und SUMMARY.md schreiben
     writer::write_markdown_and_summary(&all_blocks, Path::new(target_dir), &summary_path, cli.dry_run)?;
+    // Fallback: Falls SUMMARY.md im src/-Ordner fehlt, aber im mdbook-Root existiert, kopiere sie herüber
+    if !cli.dry_run {
+        let root_summary = Path::new(target_dir).parent().map(|p| p.join("SUMMARY.md"));
+        if !summary_path.exists() {
+            if let Some(root) = root_summary {
+                if root.exists() {
+                    fs::copy(&root, &summary_path)?;
+                }
+            }
+        }
+    }
     println!("{} Marker-Blöcke verarbeitet.", all_blocks.len());
     Ok(())
 }
