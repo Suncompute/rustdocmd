@@ -17,6 +17,7 @@
 3. Extrahiere und transformiere rustdoc-Kommentare zu Markdown
 4. Schreibe `.md`-Dateien ins Zielverzeichnis
 5. Aktualisiere `SUMMARY.md` entsprechend der Marker-Reihenfolge
+6. Entferne `.md`-Dateien und zugehörige Einträge aus der `SUMMARY.md`, wenn die Marker im Quellcode nicht mehr vorhanden sind
 
 ## Workflows & Befehle
 **Initiales Setup:**

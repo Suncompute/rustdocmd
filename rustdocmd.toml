@@ -1,0 +1,3 @@
+[paths]
+source = "./meinprojekt/src"
+target = "./mdbook/src"
