@@ -1,0 +1,12 @@
+/home/bruno/rustdocmd/rustdocmd/target/debug/deps/float_cmp-db01ccd5f0b979c7.d: /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/lib.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/macros.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/ulps.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/ulps_eq.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/eq.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/ratio.rs
+
+/home/bruno/rustdocmd/rustdocmd/target/debug/deps/libfloat_cmp-db01ccd5f0b979c7.rlib: /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/lib.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/macros.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/ulps.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/ulps_eq.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/eq.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/ratio.rs
+
+/home/bruno/rustdocmd/rustdocmd/target/debug/deps/libfloat_cmp-db01ccd5f0b979c7.rmeta: /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/lib.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/macros.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/ulps.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/ulps_eq.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/eq.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/ratio.rs
+
+/home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/lib.rs:
+/home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/macros.rs:
+/home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/ulps.rs:
+/home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/ulps_eq.rs:
+/home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/eq.rs:
+/home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/float-cmp-0.10.0/src/ratio.rs:

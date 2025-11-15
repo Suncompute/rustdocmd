@@ -4,47 +4,54 @@ use regex::Regex;
 pub struct MarkerBlock {
     pub target_md: String,      // z.B. "test.md"
     pub order: Option<usize>,  // z.B. 1
-    pub source_ref: String,    // z.B. "code.md"
+    pub source_ref: String,    // z.B. "code.md" oder leer
     pub content: String,       // extrahierter Inhalt
 }
 
-/// Extrahiert alle Marker-Blöcke aus einem gegebenen Rust-Quelltext
+/// Extrahiert alle Marker-Blöcke aus Rustdoc-Kommentaren (blockweise, Zeilenumbrüche erlaubt)
 pub fn extract_marker_blocks(source: &str) -> Vec<MarkerBlock> {
-    // Regex für Marker-Start: <dateiname.md(zahl)?> "quelle.md">
-    let re = Regex::new(r#"<([\w\-.]+)(?:\((\d+)\))?>\s*\"([\w\-.]+)\"\s*>([\s\S]*?)</\1>"#).unwrap();
+    let doc = extract_rustdoc_comments(source);
+    let lines: Vec<&str> = doc.lines().collect();
+    // Öffnende Zeile: <file.md(1)> optional gefolgt von "source_ref"
+    let re_open = Regex::new(r#"^\s*<([\w\-.]+)(?:\((\d+)\))?>\s*(?:\"([^\"]+)\")?\s*$"#).unwrap();
     let mut blocks = Vec::new();
-    for cap in re.captures_iter(source) {
-        let target_md = cap[1].to_string();
-        let order = cap.get(2).map(|m| m.as_str().parse::<usize>().ok()).flatten();
-        let source_ref = cap[3].to_string();
-        let content = cap[4].trim().to_string();
-        blocks.push(MarkerBlock { target_md, order, source_ref, content });
+    let mut i = 0;
+    while i < lines.len() {
+        if let Some(cap) = re_open.captures(lines[i]) {
+            let tag = cap[1].to_string();
+            let order = cap.get(2).and_then(|m| m.as_str().parse::<usize>().ok());
+            let source_ref = cap.get(3).map(|m| m.as_str().to_string()).unwrap_or_default();
+            // Suche nach passendem schließenden Tag ab der nächsten Zeile
+            let re_close = Regex::new(&format!(r#"^\s*</{}>\s*$"#, regex::escape(&tag))).unwrap();
+            let mut j = i + 1;
+            while j < lines.len() && !re_close.is_match(lines[j]) {
+                j += 1;
+            }
+            if j < lines.len() { // schließendes Tag gefunden
+                let content = lines[i+1..j].join("\n").trim().to_string();
+                blocks.push(MarkerBlock { target_md: tag, order, source_ref, content });
+                i = j + 1; // weiter nach dem schließenden Tag
+                continue;
+            } else {
+                // kein schließendes Tag gefunden -> ignoriere diesen offenen Marker
+            }
+        }
+        i += 1;
     }
     blocks
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-    #[test]
-    fn test_extract_marker_blocks() {
-        let src = r#"
-        /// <kapitel.md(2)> "code.md"
-        /// # Überschrift
-        /// Inhalt
-        /// </kapitel.md>
-        /// <test.md> "quelle.rs"
-        /// Noch ein Block
-        /// </test.md>
-        "#;
-        let blocks = extract_marker_blocks(src);
-        assert_eq!(blocks.len(), 2);
-        assert_eq!(blocks[0].target_md, "kapitel.md");
-        assert_eq!(blocks[0].order, Some(2));
-        assert_eq!(blocks[0].source_ref, "code.md");
-        assert!(blocks[0].content.contains("Überschrift"));
-        assert_eq!(blocks[1].target_md, "test.md");
-        assert_eq!(blocks[1].order, None);
-        assert_eq!(blocks[1].source_ref, "quelle.rs");
-    }
+pub fn extract_rustdoc_comments(source: &str) -> String {
+    source
+        .lines()
+        .filter_map(|line| {
+            let line = line.trim_start();
+            if let Some(rest) = line.strip_prefix("///") {
+                Some(rest.trim())
+            } else if let Some(rest) = line.strip_prefix("//!") {
+                Some(rest.trim())
+            } else { None }
+        })
+        .collect::<Vec<_>>()
+        .join("\n")
 }

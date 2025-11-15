@@ -1,3 +1,3 @@
 [paths]
-source = "./meinprojekt/src"
+source = "./src"
 target = "./mdbook/src"
