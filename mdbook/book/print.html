@@ -220,6 +220,18 @@ target = "./mdbook/src"
 mdbook serve
 # öffne http://localhost:3000 im Browser
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="beispiel-so-verwendest-du-rustdocmd"><a class="header" href="#beispiel-so-verwendest-du-rustdocmd">Beispiel: So verwendest du rustdocmd</a></h2>
+<p>Markiere im Rust-Code einen Bereich mit folgendem Muster:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// &lt;kapitel.md(1)&gt; "main.rs"
+/// # Mein Kapitel
+/// Hier steht die Dokumentation für dieses Kapitel.
+/// &lt;/kapitel.md&gt;
+<span class="boring">}</span></code></pre></pre>
+<p>Nach dem Ausführen von <code>rustdocmd</code> wird daraus automatisch eine Markdown-Datei <code>kapitel.md</code> erzeugt und in dein mdBook eingebunden.
+Die Reihenfolge im Inhaltsverzeichnis steuerst du mit der Zahl in Klammern <code>(1)</code>.</p>
+<p>Du kannst beliebig viele solcher Marker-Blöcke in deinem Code verwenden, um die Doku zu strukturieren.</p>
 
                     </main>
 

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Install - Dokumentation rustdocmd</title>
+        <title>Example - Dokumentation rustdocmd</title>
 
 
         <!-- Custom HTML head -->
@@ -175,54 +175,27 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="installationsanleitung-für-rustdocmd"><a class="header" href="#installationsanleitung-für-rustdocmd">Installationsanleitung für rustdocmd</a></h2>
-<ol>
-<li>Repository klonen:</li>
-</ol>
-<pre><code class="language-sh">git clone https://github.com/Suncompute/rustdocmd.git
-cd rustdocmd/rustdocmd
-</code></pre>
-<ol start="2">
-<li>Abhängigkeiten installieren und Release-Binary bauen:</li>
-</ol>
-<pre><code class="language-sh">cargo build --release
-</code></pre>
-<ol start="3">
-<li>Konfigurationsdatei <code>rustdocmd.toml</code> anlegen (falls noch nicht vorhanden):</li>
-</ol>
-<pre><code class="language-toml">[paths]
-source = "./src"
-target = "./mdbook/src"
-</code></pre>
-<ol start="4">
-<li>(Optional) mdBook installieren, falls noch nicht vorhanden:</li>
-</ol>
-<pre><code class="language-sh">cargo install mdbook
-</code></pre>
-<ol start="5">
-<li>Tool ausführen:</li>
-</ol>
-<pre><code class="language-sh">./target/release/rustdocmd
-</code></pre>
-<ol start="6">
-<li>Dokumentation lokal anzeigen:</li>
-</ol>
-<pre><code class="language-sh">cd mdbook
-mdbook serve
-# öffne http://localhost:3000 im Browser
-</code></pre>
+                        <h2 id="beispiel-so-verwendest-du-rustdocmd"><a class="header" href="#beispiel-so-verwendest-du-rustdocmd">Beispiel: So verwendest du rustdocmd</a></h2>
+<p>Markiere im Rust-Code einen Bereich mit folgendem Muster:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// &lt;kapitel.md(1)&gt; "main.rs"
+/// # Mein Kapitel
+/// Hier steht die Dokumentation für dieses Kapitel.
+/// &lt;/kapitel.md&gt;
+<span class="boring">}</span></code></pre></pre>
+<p>Nach dem Ausführen von <code>rustdocmd</code> wird daraus automatisch eine Markdown-Datei <code>kapitel.md</code> erzeugt und in dein mdBook eingebunden.
+Die Reihenfolge im Inhaltsverzeichnis steuerst du mit der Zahl in Klammern <code>(1)</code>.</p>
+<p>Du kannst beliebig viele solcher Marker-Blöcke in deinem Code verwenden, um die Doku zu strukturieren.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="introducing.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="install.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="example.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -230,13 +203,10 @@ mdbook serve
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="introducing.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="install.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="example.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
