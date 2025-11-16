@@ -6,9 +6,6 @@
 /// Mit diesem Tool kannst du direkt im Rust-Code mit rustdoc-Kommentaren (`///` oder `//!`) umfangreiche Dokumentation verfassen.
 /// Speziell markierte Bereiche werden automatisch extrahiert und als eigenständige Markdown-Dateien ausgegeben.
 /// So entsteht aus deinem Code und den Kommentaren eine vollständige, versionierte Dokumentation, die sich nahtlos mit mdBook aufbereiten und veröffentlichen lässt.
-/// 
-/// - Marker-Syntax: <datei.md(reihenfolge)> "quelle"
-/// - Automatische Integration in mdBook
 /// </readme>
 /// </introducing.md>
 /// <install.md(2)> "main.rs"
@@ -68,6 +65,19 @@
 ///
 /// Wird ein Block entfernt, so wird die entsprechende Markdown-Datei und der Eintrag im Inhaltsverzeichnis automatisch gelöscht.
 ///
+/// ## README.md generieren
+/// Um einen Abschnitt in deine `README.md` aufzunehmen, verwende einen Marker wie diesen:
+///
+/// ```rust
+/// /// <readme>
+/// /// # Mein Abschnitt
+/// /// Dieser Text erscheint in der README.
+/// /// </readme>
+/// ```
+///
+/// Wenn du `rustdocmd --generate-readme` ausführst, werden alle solchen Blöcke gesammelt und in die `README.md` geschrieben (vorheriger Inhalt wird überschrieben).
+/// Ohne das Flag `--generate-readme` bleibt deine `README.md` unverändert.
+///
 /// ## Spiegelung der SUMMARY.md (mdBook)
 ///
 /// Standardmäßig schreibt und pflegt rustdocmd die Inhaltsübersicht deines mdBook unter `mdbook/src/SUMMARY.md` (das ist der Ort, den mdBook erwartet).
@@ -81,19 +91,6 @@
 /// ```
 ///
 /// Ist die Spiegelung deaktiviert, wird nur `mdbook/src/SUMMARY.md` aktualisiert; die Datei im Projekt-Root bleibt unberührt.
-///
-/// ## README.md generieren
-/// Um einen Abschnitt in deine `README.md` aufzunehmen, verwende einen Marker wie diesen:
-///
-/// ```rust
-/// /// <readme>
-/// /// # Mein Abschnitt
-/// /// Dieser Text erscheint in der README.
-/// /// </readme>
-/// ```
-///
-/// Wenn du `rustdocmd --generate-readme` ausführst, werden alle solchen Blöcke gesammelt und in die `README.md` geschrieben (vorheriger Inhalt wird überschrieben).
-/// Ohne das Flag `--generate-readme` bleibt deine `README.md` unverändert.
 /// </example.md>
 mod parser;
 mod config;

@@ -189,16 +189,6 @@ Die Reihenfolge im Inhaltsverzeichnis steuerst du mit der Zahl in Klammern <code
 <p>Du kannst beliebig viele solcher Marker-Blöcke in deinem Code verwenden, um die Doku zu strukturieren.</p>
 <p>Wenn ein Block im Rust Code geändert wird, aktualisiere einfach die Doku, indem du <code>rustdocmd</code> erneut ausführst.</p>
 <p>Wird ein Block entfernt, so wird die entsprechende Markdown-Datei und der Eintrag im Inhaltsverzeichnis automatisch gelöscht.</p>
-<h2 id="spiegelung-der-summarymd-mdbook"><a class="header" href="#spiegelung-der-summarymd-mdbook">Spiegelung der SUMMARY.md (mdBook)</a></h2>
-<p>Standardmäßig schreibt und pflegt rustdocmd die Inhaltsübersicht deines mdBook unter <code>mdbook/src/SUMMARY.md</code> (das ist der Ort, den mdBook erwartet).
-Für mehr Kompatibilität kann diese Datei zusätzlich nach <code>mdbook/SUMMARY.md</code> (Projekt-Root) gespiegelt werden, sodass beide Versionen immer synchron sind.</p>
-<ul>
-<li>Standard: Spiegelung ist aktiviert.</li>
-<li>Du kannst sie mit folgendem CLI-Flag deaktivieren:</li>
-</ul>
-<pre><code>./target/release/rustdocmd --mirror-root-summary=false
-</code></pre>
-<p>Ist die Spiegelung deaktiviert, wird nur <code>mdbook/src/SUMMARY.md</code> aktualisiert; die Datei im Projekt-Root bleibt unberührt.</p>
 <h2 id="readmemd-generieren"><a class="header" href="#readmemd-generieren">README.md generieren</a></h2>
 <p>Um einen Abschnitt in deine <code>README.md</code> aufzunehmen, verwende einen Marker wie diesen:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
@@ -210,6 +200,16 @@ Für mehr Kompatibilität kann diese Datei zusätzlich nach <code>mdbook/SUMMARY
 <span class="boring">}</span></code></pre></pre>
 <p>Wenn du <code>rustdocmd --generate-readme</code> ausführst, werden alle solchen Blöcke gesammelt und in die <code>README.md</code> geschrieben (vorheriger Inhalt wird überschrieben).
 Ohne das Flag <code>--generate-readme</code> bleibt deine <code>README.md</code> unverändert.</p>
+<h2 id="spiegelung-der-summarymd-mdbook"><a class="header" href="#spiegelung-der-summarymd-mdbook">Spiegelung der SUMMARY.md (mdBook)</a></h2>
+<p>Standardmäßig schreibt und pflegt rustdocmd die Inhaltsübersicht deines mdBook unter <code>mdbook/src/SUMMARY.md</code> (das ist der Ort, den mdBook erwartet).
+Für mehr Kompatibilität kann diese Datei zusätzlich nach <code>mdbook/SUMMARY.md</code> (Projekt-Root) gespiegelt werden, sodass beide Versionen immer synchron sind.</p>
+<ul>
+<li>Standard: Spiegelung ist aktiviert.</li>
+<li>Du kannst sie mit folgendem CLI-Flag deaktivieren:</li>
+</ul>
+<pre><code>./target/release/rustdocmd --mirror-root-summary=false
+</code></pre>
+<p>Ist die Spiegelung deaktiviert, wird nur <code>mdbook/src/SUMMARY.md</code> aktualisiert; die Datei im Projekt-Root bleibt unberührt.</p>
 
                     </main>
 
