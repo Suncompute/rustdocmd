@@ -175,41 +175,41 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="installationsanleitung-für-rustdocmd"><a class="header" href="#installationsanleitung-für-rustdocmd">Installationsanleitung für rustdocmd</a></h2>
+                        <h2 id="installation-guide-for-rustdocmd"><a class="header" href="#installation-guide-for-rustdocmd">Installation Guide for rustdocmd</a></h2>
 <ol>
-<li>Repository klonen:</li>
+<li>Clone the repository:</li>
 </ol>
 <pre><code class="language-sh">git clone https://github.com/Suncompute/rustdocmd.git
 cd rustdocmd/rustdocmd
 </code></pre>
 <ol start="2">
-<li>Abhängigkeiten installieren und Release-Binary bauen:</li>
+<li>Install dependencies and build the release binary:</li>
 </ol>
 <pre><code class="language-sh">cargo build --release
 </code></pre>
 <ol start="3">
-<li>Konfigurationsdatei <code>rustdocmd.toml</code> anlegen (falls noch nicht vorhanden):</li>
+<li>Create a <code>rustdocmd.toml</code> configuration file (if not already present):</li>
 </ol>
 <pre><code class="language-toml">[paths]
 source = "./src"
 target = "./mdbook/src"
 </code></pre>
 <ol start="4">
-<li>(Optional) mdBook installieren, falls noch nicht vorhanden:</li>
+<li>(Optional) Install mdBook if not already installed:</li>
 </ol>
 <pre><code class="language-sh">cargo install mdbook
 </code></pre>
 <ol start="5">
-<li>Tool ausführen:</li>
+<li>Run the tool:</li>
 </ol>
 <pre><code class="language-sh">./target/release/rustdocmd
 </code></pre>
 <ol start="6">
-<li>Dokumentation lokal anzeigen:</li>
+<li>View the documentation locally:</li>
 </ol>
 <pre><code class="language-sh">cd mdbook
 mdbook serve
-# öffne http://localhost:3000 im Browser
+# open http://localhost:3000 in your browser
 </code></pre>
 
                     </main>

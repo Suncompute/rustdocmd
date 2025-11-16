@@ -1,14 +1,14 @@
 /// <introducing.md(1)> "main.rs"
 /// <readme>
 /// rustdocmd
-/// 
-/// Mit diesem Tool kannst du direkt im Rust-Code mit rustdoc-Kommentaren (`///` oder `//!`) umfangreiche, versionierte Dokumentation verfassen.
 ///
-/// Speziell markierte Bereiche werden automatisch extrahiert und als eigenständige Markdown-Dateien ausgegeben.
+/// With this tool, you can write comprehensive, versioned documentation directly in your Rust code using rustdoc comments (`///` or `//!`).
 ///
-/// So entsteht aus deinem Code und den Kommentaren eine vollständige, stets aktuelle Dokumentation, die sich nahtlos und automatisiert in Systeme wie mdBook integrieren und veröffentlichen lässt – sodass deine Projektdokumentation immer automatisch mit dem aktuellen Stand deines Codes übereinstimmt.
+/// Specially marked sections are automatically extracted and output as standalone Markdown files.
 ///
-/// Das Tool befindet sich noch im Prototyp-Stadium und wird kontinuierlich weiterentwickelt.
+/// This way, your code and comments become a complete, always up-to-date documentation that can be seamlessly and automatically integrated into systems like mdBook—ensuring your project documentation always matches the current state of your code.
+///
+/// The tool is still in a prototype stage and is continuously being developed.
 ///
 /// 👉 [Buy Me a Coffee](https://www.buymeacoffee.com/suncompute)
 ///
@@ -16,87 +16,87 @@
 /// </introducing.md>
 /// <install.md(2)> "main.rs"
 ///
-/// ## Installationsanleitung für rustdocmd
-/// 
-/// 1. Repository klonen:
+/// ## Installation Guide for rustdocmd
+///
+/// 1. Clone the repository:
 ///    ```sh
 ///    git clone https://github.com/Suncompute/rustdocmd.git
 ///    cd rustdocmd/rustdocmd
 ///    ```
-/// 2. Abhängigkeiten installieren und Release-Binary bauen:
+/// 2. Install dependencies and build the release binary:
 ///    ```sh
 ///    cargo build --release
 ///    ```
-/// 3. Konfigurationsdatei `rustdocmd.toml` anlegen (falls noch nicht vorhanden):
+/// 3. Create a `rustdocmd.toml` configuration file (if not already present):
 ///    ```toml
 ///    [paths]
 ///    source = "./src"
 ///    target = "./mdbook/src"
 ///    ```
 ///
-/// 4. (Optional) mdBook installieren, falls noch nicht vorhanden:
+/// 4. (Optional) Install mdBook if not already installed:
 ///    ```sh
 ///    cargo install mdbook
 ///    ```
-/// 5. Tool ausführen:
+/// 5. Run the tool:
 ///    ```sh
 ///    ./target/release/rustdocmd
 ///    ```
-/// 6. Dokumentation lokal anzeigen:
+/// 6. View the documentation locally:
 ///    ```sh
 ///    cd mdbook
 ///    mdbook serve
-///    # öffne http://localhost:3000 im Browser
+///    # open http://localhost:3000 in your browser
 ///    ```
 /// </install.md>
 /// <example.md(3)> "main.rs"
 ///
-/// ## Beispiel: So verwendest du rustdocmd
+/// ## Example: How to use rustdocmd
 ///
-/// Markiere im Rust-Code einen Bereich mit folgendem Muster:
+/// Mark a section in your Rust code with the following pattern:
 ///
 /// ```rust
-/// /// <kapitel.md(1)> "main.rs"
-/// /// # Mein Kapitel
-/// /// Hier steht die Dokumentation für dieses Kapitel.
-/// /// </kapitel.md>
+/// /// <chapter.md(1)> "main.rs"
+/// /// # My Chapter
+/// /// This is the documentation for this chapter.
+/// /// </chapter.md>
 /// ```
 ///
-/// Nach dem Ausführen von `rustdocmd` wird daraus automatisch eine Markdown-Datei `kapitel.md` erzeugt und in dein mdBook eingebunden.
-/// Die Reihenfolge im Inhaltsverzeichnis steuerst du mit der Zahl in Klammern `(1)`.
+/// After running `rustdocmd`, this will automatically generate a Markdown file `chapter.md` and include it in your mdBook.
+/// The order in the table of contents is controlled by the number in parentheses `(1)`.
 ///
-/// Du kannst beliebig viele solcher Marker-Blöcke in deinem Code verwenden, um die Doku zu strukturieren.
+/// You can use as many such marker blocks as you like to structure your documentation.
 ///
-/// Wenn ein Block im Rust Code geändert wird, aktualisiere einfach die Doku, indem du `rustdocmd` erneut ausführst.
+/// If a block in the Rust code is changed, simply update the documentation by running `rustdocmd` again.
 ///
-/// Wird ein Block entfernt, so wird die entsprechende Markdown-Datei und der Eintrag im Inhaltsverzeichnis automatisch gelöscht.
+/// If a block is removed, the corresponding Markdown file and the entry in the table of contents will be automatically deleted.
 ///
-/// ## README.md generieren
-/// Um einen Abschnitt in deine `README.md` aufzunehmen, verwende einen Marker wie diesen:
+/// ## Generate README.md
+/// To include a section in your `README.md`, use a marker like this:
 ///
 /// ```rust
 /// /// <readme>
-/// /// # Mein Abschnitt
-/// /// Dieser Text erscheint in der README.
+/// /// # My Section
+/// /// This text will appear in the README.
 /// /// </readme>
 /// ```
 ///
-/// Wenn du `rustdocmd --generate-readme` ausführst, werden alle solchen Blöcke gesammelt und in die `README.md` geschrieben (vorheriger Inhalt wird überschrieben).
-/// Ohne das Flag `--generate-readme` bleibt deine `README.md` unverändert.
+/// When you run `rustdocmd --generate-readme`, all such blocks are collected and written to `README.md` (previous content will be overwritten).
+/// Without the `--generate-readme` flag, your `README.md` remains unchanged.
 ///
-/// ## Spiegelung der SUMMARY.md (mdBook)
+/// ## Mirroring SUMMARY.md (mdBook)
 ///
-/// Standardmäßig schreibt und pflegt rustdocmd die Inhaltsübersicht deines mdBook unter `mdbook/src/SUMMARY.md` (das ist der Ort, den mdBook erwartet).
-/// Für mehr Kompatibilität kann diese Datei zusätzlich nach `mdbook/SUMMARY.md` (Projekt-Root) gespiegelt werden, sodass beide Versionen immer synchron sind.
+/// By default, rustdocmd writes and maintains the table of contents for your mdBook at `mdbook/src/SUMMARY.md` (the location expected by mdBook).
+/// For greater compatibility, this file can also be mirrored to `mdbook/SUMMARY.md` (project root), so both versions are always in sync.
 ///
-/// - Standard: Spiegelung ist aktiviert.
-/// - Du kannst sie mit folgendem CLI-Flag deaktivieren:
+/// - Default: Mirroring is enabled.
+/// - You can disable it with the following CLI flag:
 ///
 /// ```
 /// ./target/release/rustdocmd --mirror-root-summary=false
 /// ```
 ///
-/// Ist die Spiegelung deaktiviert, wird nur `mdbook/src/SUMMARY.md` aktualisiert; die Datei im Projekt-Root bleibt unberührt.
+/// If mirroring is disabled, only `mdbook/src/SUMMARY.md` will be updated; the file in the project root will remain untouched.
 /// </example.md>
 mod parser;
 mod config;

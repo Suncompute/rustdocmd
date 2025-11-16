@@ -1,13 +1,13 @@
 <readme>
 rustdocmd
 
-Mit diesem Tool kannst du direkt im Rust-Code mit rustdoc-Kommentaren (`///` oder `//!`) umfangreiche, versionierte Dokumentation verfassen.
+With this tool, you can write comprehensive, versioned documentation directly in your Rust code using rustdoc comments (`///` or `//!`).
 
-Speziell markierte Bereiche werden automatisch extrahiert und als eigenständige Markdown-Dateien ausgegeben.
+Specially marked sections are automatically extracted and output as standalone Markdown files.
 
-So entsteht aus deinem Code und den Kommentaren eine vollständige, stets aktuelle Dokumentation, die sich nahtlos und automatisiert in Systeme wie mdBook integrieren und veröffentlichen lässt – sodass deine Projektdokumentation immer automatisch mit dem aktuellen Stand deines Codes übereinstimmt.
+This way, your code and comments become a complete, always up-to-date documentation that can be seamlessly and automatically integrated into systems like mdBook—ensuring your project documentation always matches the current state of your code.
 
-Das Tool befindet sich noch im Prototyp-Stadium und wird kontinuierlich weiterentwickelt.
+The tool is still in a prototype stage and is continuously being developed.
 
 👉 [Buy Me a Coffee](https://www.buymeacoffee.com/suncompute)
 

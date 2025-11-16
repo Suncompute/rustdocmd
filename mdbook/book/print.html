@@ -178,82 +178,82 @@
                     <main>
                         <readme>
 rustdocmd
-<p>Mit diesem Tool kannst du direkt im Rust-Code mit rustdoc-Kommentaren (<code>///</code> oder <code>//!</code>) umfangreiche, versionierte Dokumentation verfassen.</p>
-<p>Speziell markierte Bereiche werden automatisch extrahiert und als eigenständige Markdown-Dateien ausgegeben.</p>
-<p>So entsteht aus deinem Code und den Kommentaren eine vollständige, stets aktuelle Dokumentation, die sich nahtlos und automatisiert in Systeme wie mdBook integrieren und veröffentlichen lässt – sodass deine Projektdokumentation immer automatisch mit dem aktuellen Stand deines Codes übereinstimmt.</p>
-<p>Das Tool befindet sich noch im Prototyp-Stadium und wird kontinuierlich weiterentwickelt.</p>
+<p>With this tool, you can write comprehensive, versioned documentation directly in your Rust code using rustdoc comments (<code>///</code> or <code>//!</code>).</p>
+<p>Specially marked sections are automatically extracted and output as standalone Markdown files.</p>
+<p>This way, your code and comments become a complete, always up-to-date documentation that can be seamlessly and automatically integrated into systems like mdBook—ensuring your project documentation always matches the current state of your code.</p>
+<p>The tool is still in a prototype stage and is continuously being developed.</p>
 <p>👉 <a href="https://www.buymeacoffee.com/suncompute">Buy Me a Coffee</a></p>
-</readme><div style="break-before: page; page-break-before: always;"></div><h2 id="installationsanleitung-für-rustdocmd"><a class="header" href="#installationsanleitung-für-rustdocmd">Installationsanleitung für rustdocmd</a></h2>
+</readme><div style="break-before: page; page-break-before: always;"></div><h2 id="installation-guide-for-rustdocmd"><a class="header" href="#installation-guide-for-rustdocmd">Installation Guide for rustdocmd</a></h2>
 <ol>
-<li>Repository klonen:</li>
+<li>Clone the repository:</li>
 </ol>
 <pre><code class="language-sh">git clone https://github.com/Suncompute/rustdocmd.git
 cd rustdocmd/rustdocmd
 </code></pre>
 <ol start="2">
-<li>Abhängigkeiten installieren und Release-Binary bauen:</li>
+<li>Install dependencies and build the release binary:</li>
 </ol>
 <pre><code class="language-sh">cargo build --release
 </code></pre>
 <ol start="3">
-<li>Konfigurationsdatei <code>rustdocmd.toml</code> anlegen (falls noch nicht vorhanden):</li>
+<li>Create a <code>rustdocmd.toml</code> configuration file (if not already present):</li>
 </ol>
 <pre><code class="language-toml">[paths]
 source = "./src"
 target = "./mdbook/src"
 </code></pre>
 <ol start="4">
-<li>(Optional) mdBook installieren, falls noch nicht vorhanden:</li>
+<li>(Optional) Install mdBook if not already installed:</li>
 </ol>
 <pre><code class="language-sh">cargo install mdbook
 </code></pre>
 <ol start="5">
-<li>Tool ausführen:</li>
+<li>Run the tool:</li>
 </ol>
 <pre><code class="language-sh">./target/release/rustdocmd
 </code></pre>
 <ol start="6">
-<li>Dokumentation lokal anzeigen:</li>
+<li>View the documentation locally:</li>
 </ol>
 <pre><code class="language-sh">cd mdbook
 mdbook serve
-# öffne http://localhost:3000 im Browser
+# open http://localhost:3000 in your browser
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="beispiel-so-verwendest-du-rustdocmd"><a class="header" href="#beispiel-so-verwendest-du-rustdocmd">Beispiel: So verwendest du rustdocmd</a></h2>
-<p>Markiere im Rust-Code einen Bereich mit folgendem Muster:</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="example-how-to-use-rustdocmd"><a class="header" href="#example-how-to-use-rustdocmd">Example: How to use rustdocmd</a></h2>
+<p>Mark a section in your Rust code with the following pattern:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>/// &lt;kapitel.md(1)&gt; "main.rs"
-/// # Mein Kapitel
-/// Hier steht die Dokumentation für dieses Kapitel.
-/// &lt;/kapitel.md&gt;
+</span>/// &lt;chapter.md(1)&gt; "main.rs"
+/// # My Chapter
+/// This is the documentation for this chapter.
+/// &lt;/chapter.md&gt;
 <span class="boring">}</span></code></pre></pre>
-<p>Nach dem Ausführen von <code>rustdocmd</code> wird daraus automatisch eine Markdown-Datei <code>kapitel.md</code> erzeugt und in dein mdBook eingebunden.
-Die Reihenfolge im Inhaltsverzeichnis steuerst du mit der Zahl in Klammern <code>(1)</code>.</p>
-<p>Du kannst beliebig viele solcher Marker-Blöcke in deinem Code verwenden, um die Doku zu strukturieren.</p>
-<p>Wenn ein Block im Rust Code geändert wird, aktualisiere einfach die Doku, indem du <code>rustdocmd</code> erneut ausführst.</p>
-<p>Wird ein Block entfernt, so wird die entsprechende Markdown-Datei und der Eintrag im Inhaltsverzeichnis automatisch gelöscht.</p>
-<h2 id="readmemd-generieren"><a class="header" href="#readmemd-generieren">README.md generieren</a></h2>
-<p>Um einen Abschnitt in deine <code>README.md</code> aufzunehmen, verwende einen Marker wie diesen:</p>
+<p>After running <code>rustdocmd</code>, this will automatically generate a Markdown file <code>chapter.md</code> and include it in your mdBook.
+The order in the table of contents is controlled by the number in parentheses <code>(1)</code>.</p>
+<p>You can use as many such marker blocks as you like to structure your documentation.</p>
+<p>If a block in the Rust code is changed, simply update the documentation by running <code>rustdocmd</code> again.</p>
+<p>If a block is removed, the corresponding Markdown file and the entry in the table of contents will be automatically deleted.</p>
+<h2 id="generate-readmemd"><a class="header" href="#generate-readmemd">Generate README.md</a></h2>
+<p>To include a section in your <code>README.md</code>, use a marker like this:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// &lt;readme&gt;
-/// # Mein Abschnitt
-/// Dieser Text erscheint in der README.
+/// # My Section
+/// This text will appear in the README.
 /// &lt;/readme&gt;
 <span class="boring">}</span></code></pre></pre>
-<p>Wenn du <code>rustdocmd --generate-readme</code> ausführst, werden alle solchen Blöcke gesammelt und in die <code>README.md</code> geschrieben (vorheriger Inhalt wird überschrieben).
-Ohne das Flag <code>--generate-readme</code> bleibt deine <code>README.md</code> unverändert.</p>
-<h2 id="spiegelung-der-summarymd-mdbook"><a class="header" href="#spiegelung-der-summarymd-mdbook">Spiegelung der SUMMARY.md (mdBook)</a></h2>
-<p>Standardmäßig schreibt und pflegt rustdocmd die Inhaltsübersicht deines mdBook unter <code>mdbook/src/SUMMARY.md</code> (das ist der Ort, den mdBook erwartet).
-Für mehr Kompatibilität kann diese Datei zusätzlich nach <code>mdbook/SUMMARY.md</code> (Projekt-Root) gespiegelt werden, sodass beide Versionen immer synchron sind.</p>
+<p>When you run <code>rustdocmd --generate-readme</code>, all such blocks are collected and written to <code>README.md</code> (previous content will be overwritten).
+Without the <code>--generate-readme</code> flag, your <code>README.md</code> remains unchanged.</p>
+<h2 id="mirroring-summarymd-mdbook"><a class="header" href="#mirroring-summarymd-mdbook">Mirroring SUMMARY.md (mdBook)</a></h2>
+<p>By default, rustdocmd writes and maintains the table of contents for your mdBook at <code>mdbook/src/SUMMARY.md</code> (the location expected by mdBook).
+For greater compatibility, this file can also be mirrored to <code>mdbook/SUMMARY.md</code> (project root), so both versions are always in sync.</p>
 <ul>
-<li>Standard: Spiegelung ist aktiviert.</li>
-<li>Du kannst sie mit folgendem CLI-Flag deaktivieren:</li>
+<li>Default: Mirroring is enabled.</li>
+<li>You can disable it with the following CLI flag:</li>
 </ul>
 <pre><code>./target/release/rustdocmd --mirror-root-summary=false
 </code></pre>
-<p>Ist die Spiegelung deaktiviert, wird nur <code>mdbook/src/SUMMARY.md</code> aktualisiert; die Datei im Projekt-Root bleibt unberührt.</p>
+<p>If mirroring is disabled, only <code>mdbook/src/SUMMARY.md</code> will be updated; the file in the project root will remain untouched.</p>
 
                     </main>
 

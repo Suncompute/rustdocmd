@@ -175,41 +175,41 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="beispiel-so-verwendest-du-rustdocmd"><a class="header" href="#beispiel-so-verwendest-du-rustdocmd">Beispiel: So verwendest du rustdocmd</a></h2>
-<p>Markiere im Rust-Code einen Bereich mit folgendem Muster:</p>
+                        <h2 id="example-how-to-use-rustdocmd"><a class="header" href="#example-how-to-use-rustdocmd">Example: How to use rustdocmd</a></h2>
+<p>Mark a section in your Rust code with the following pattern:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>/// &lt;kapitel.md(1)&gt; "main.rs"
-/// # Mein Kapitel
-/// Hier steht die Dokumentation für dieses Kapitel.
-/// &lt;/kapitel.md&gt;
+</span>/// &lt;chapter.md(1)&gt; "main.rs"
+/// # My Chapter
+/// This is the documentation for this chapter.
+/// &lt;/chapter.md&gt;
 <span class="boring">}</span></code></pre></pre>
-<p>Nach dem Ausführen von <code>rustdocmd</code> wird daraus automatisch eine Markdown-Datei <code>kapitel.md</code> erzeugt und in dein mdBook eingebunden.
-Die Reihenfolge im Inhaltsverzeichnis steuerst du mit der Zahl in Klammern <code>(1)</code>.</p>
-<p>Du kannst beliebig viele solcher Marker-Blöcke in deinem Code verwenden, um die Doku zu strukturieren.</p>
-<p>Wenn ein Block im Rust Code geändert wird, aktualisiere einfach die Doku, indem du <code>rustdocmd</code> erneut ausführst.</p>
-<p>Wird ein Block entfernt, so wird die entsprechende Markdown-Datei und der Eintrag im Inhaltsverzeichnis automatisch gelöscht.</p>
-<h2 id="readmemd-generieren"><a class="header" href="#readmemd-generieren">README.md generieren</a></h2>
-<p>Um einen Abschnitt in deine <code>README.md</code> aufzunehmen, verwende einen Marker wie diesen:</p>
+<p>After running <code>rustdocmd</code>, this will automatically generate a Markdown file <code>chapter.md</code> and include it in your mdBook.
+The order in the table of contents is controlled by the number in parentheses <code>(1)</code>.</p>
+<p>You can use as many such marker blocks as you like to structure your documentation.</p>
+<p>If a block in the Rust code is changed, simply update the documentation by running <code>rustdocmd</code> again.</p>
+<p>If a block is removed, the corresponding Markdown file and the entry in the table of contents will be automatically deleted.</p>
+<h2 id="generate-readmemd"><a class="header" href="#generate-readmemd">Generate README.md</a></h2>
+<p>To include a section in your <code>README.md</code>, use a marker like this:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// &lt;readme&gt;
-/// # Mein Abschnitt
-/// Dieser Text erscheint in der README.
+/// # My Section
+/// This text will appear in the README.
 /// &lt;/readme&gt;
 <span class="boring">}</span></code></pre></pre>
-<p>Wenn du <code>rustdocmd --generate-readme</code> ausführst, werden alle solchen Blöcke gesammelt und in die <code>README.md</code> geschrieben (vorheriger Inhalt wird überschrieben).
-Ohne das Flag <code>--generate-readme</code> bleibt deine <code>README.md</code> unverändert.</p>
-<h2 id="spiegelung-der-summarymd-mdbook"><a class="header" href="#spiegelung-der-summarymd-mdbook">Spiegelung der SUMMARY.md (mdBook)</a></h2>
-<p>Standardmäßig schreibt und pflegt rustdocmd die Inhaltsübersicht deines mdBook unter <code>mdbook/src/SUMMARY.md</code> (das ist der Ort, den mdBook erwartet).
-Für mehr Kompatibilität kann diese Datei zusätzlich nach <code>mdbook/SUMMARY.md</code> (Projekt-Root) gespiegelt werden, sodass beide Versionen immer synchron sind.</p>
+<p>When you run <code>rustdocmd --generate-readme</code>, all such blocks are collected and written to <code>README.md</code> (previous content will be overwritten).
+Without the <code>--generate-readme</code> flag, your <code>README.md</code> remains unchanged.</p>
+<h2 id="mirroring-summarymd-mdbook"><a class="header" href="#mirroring-summarymd-mdbook">Mirroring SUMMARY.md (mdBook)</a></h2>
+<p>By default, rustdocmd writes and maintains the table of contents for your mdBook at <code>mdbook/src/SUMMARY.md</code> (the location expected by mdBook).
+For greater compatibility, this file can also be mirrored to <code>mdbook/SUMMARY.md</code> (project root), so both versions are always in sync.</p>
 <ul>
-<li>Standard: Spiegelung ist aktiviert.</li>
-<li>Du kannst sie mit folgendem CLI-Flag deaktivieren:</li>
+<li>Default: Mirroring is enabled.</li>
+<li>You can disable it with the following CLI flag:</li>
 </ul>
 <pre><code>./target/release/rustdocmd --mirror-root-summary=false
 </code></pre>
-<p>Ist die Spiegelung deaktiviert, wird nur <code>mdbook/src/SUMMARY.md</code> aktualisiert; die Datei im Projekt-Root bleibt unberührt.</p>
+<p>If mirroring is disabled, only <code>mdbook/src/SUMMARY.md</code> will be updated; the file in the project root will remain untouched.</p>
 
                     </main>
 

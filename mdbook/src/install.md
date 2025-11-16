@@ -1,32 +1,32 @@
-## Installationsanleitung für rustdocmd
+## Installation Guide for rustdocmd
 
-1. Repository klonen:
+1. Clone the repository:
 ```sh
 git clone https://github.com/Suncompute/rustdocmd.git
 cd rustdocmd/rustdocmd
 ```
-2. Abhängigkeiten installieren und Release-Binary bauen:
+2. Install dependencies and build the release binary:
 ```sh
 cargo build --release
 ```
-3. Konfigurationsdatei `rustdocmd.toml` anlegen (falls noch nicht vorhanden):
+3. Create a `rustdocmd.toml` configuration file (if not already present):
 ```toml
 [paths]
 source = "./src"
 target = "./mdbook/src"
 ```
 
-4. (Optional) mdBook installieren, falls noch nicht vorhanden:
+4. (Optional) Install mdBook if not already installed:
 ```sh
 cargo install mdbook
 ```
-5. Tool ausführen:
+5. Run the tool:
 ```sh
 ./target/release/rustdocmd
 ```
-6. Dokumentation lokal anzeigen:
+6. View the documentation locally:
 ```sh
 cd mdbook
 mdbook serve
-# öffne http://localhost:3000 im Browser
+# open http://localhost:3000 in your browser
 ```
