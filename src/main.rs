@@ -1,23 +1,4 @@
-/// <example.md(3)> "main.rs"
-///
-/// ## Beispiel: So verwendest du rustdocmd
-///
-/// Markiere im Rust-Code einen Bereich mit folgendem Muster:
-///
-/// ```rust
-/// /// <kapitel.md(1)> "main.rs"
-/// /// # Mein Kapitel
-/// /// Hier steht die Dokumentation für dieses Kapitel.
-/// /// </kapitel.md>
-/// ```
-///
-/// Nach dem Ausführen von `rustdocmd` wird daraus automatisch eine Markdown-Datei `kapitel.md` erzeugt und in dein mdBook eingebunden.
-/// Die Reihenfolge im Inhaltsverzeichnis steuerst du mit der Zahl in Klammern `(1)`.
-///
-/// Du kannst beliebig viele solcher Marker-Blöcke in deinem Code verwenden, um die Doku zu strukturieren.
-///
-/// </example.md>
-
+/// Rustdocmd - Dokumentation aus Rust-Code mit rustdoc-Kommentaren für mdBook
 /// <introducing.md(1)> "main.rs"
 /// # Willkommen zu rustdocmd
 /// 
@@ -64,6 +45,25 @@
 ///    # öffne http://localhost:3000 im Browser
 ///    ```
 /// </install.md>
+/// <example.md(3)> "main.rs"
+///
+/// ## Beispiel: So verwendest du rustdocmd
+///
+/// Markiere im Rust-Code einen Bereich mit folgendem Muster:
+///
+/// ```rust
+/// /// <kapitel.md(1)> "main.rs"
+/// /// # Mein Kapitel
+/// /// Hier steht die Dokumentation für dieses Kapitel.
+/// /// </kapitel.md>
+/// ```
+///
+/// Nach dem Ausführen von `rustdocmd` wird daraus automatisch eine Markdown-Datei `kapitel.md` erzeugt und in dein mdBook eingebunden.
+/// Die Reihenfolge im Inhaltsverzeichnis steuerst du mit der Zahl in Klammern `(1)`.
+///
+/// Du kannst beliebig viele solcher Marker-Blöcke in deinem Code verwenden, um die Doku zu strukturieren.
+///
+/// </example.md>
 mod parser;
 mod config;
 mod writer;
