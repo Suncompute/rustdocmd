@@ -1,13 +1,52 @@
+/// <example.md(4)> "main.rs"
+///
+/// ## Example: How to use rustdocmd
+///
+/// Mark a section in your Rust code like this:
+///
+/// ```rust
+/// /// <chapter.md(1)> "main.rs"
+/// /// # My Chapter
+/// /// This is the documentation for this chapter.
+/// /// </chapter.md>
+/// ```
+///
+/// After running `rustdocmd`, this will automatically generate a Markdown file `chapter.md` and include it in your mdBook.
+/// The order in the table of contents is controlled by the number in parentheses `(1)`.
+///
+/// You can use as many such marker blocks as you like to structure your documentation.
+///
+/// </example.md>
+/// <beispiel.md(3)> "main.rs"
+///
+/// ## Beispiel: So verwendest du rustdocmd
+///
+/// Markiere im Rust-Code einen Bereich mit folgendem Muster:
+///
+/// ```rust
+/// /// <kapitel.md(1)> "main.rs"
+/// /// # Mein Kapitel
+/// /// Hier steht die Dokumentation für dieses Kapitel.
+/// /// </kapitel.md>
+/// ```
+///
+/// Nach dem Ausführen von `rustdocmd` wird daraus automatisch eine Markdown-Datei `kapitel.md` erzeugt und in dein mdBook eingebunden.
+/// Die Reihenfolge im Inhaltsverzeichnis steuerst du mit der Zahl in Klammern `(1)`.
+///
+/// Du kannst beliebig viele solcher Marker-Blöcke in deinem Code verwenden, um die Doku zu strukturieren.
+///
+/// </beispiel.md>
 
 /// <introducing.md(1)> "main.rs"
 /// # Willkommen zu rustdocmd
 /// 
-/// Dieses Projekt extrahiert spezielle rustdoc-Kommentare und wandelt sie in Markdown für mdBook um.
+/// Mit diesem Tool kannst du direkt im Rust-Code mit rustdoc-Kommentaren (`///` oder `//!`) umfangreiche Dokumentation verfassen.
+/// Speziell markierte Bereiche werden automatisch extrahiert und als eigenständige Markdown-Dateien ausgegeben.
+/// So entsteht aus deinem Code und den Kommentaren eine vollständige, versionierte Dokumentation, die sich nahtlos mit mdBook aufbereiten und veröffentlichen lässt.
 /// 
 /// - Marker-Syntax: <datei.md(reihenfolge)> "quelle"
 /// - Automatische Integration in mdBook
 /// 
-/// Viel Spaß beim Testen!
 /// </introducing.md>
 /// <install.md(2)> "main.rs"
 ///
