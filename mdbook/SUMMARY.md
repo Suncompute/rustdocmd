@@ -1,3 +1,4 @@
 # Summary
 
-* [introducing](introducing.md)
+* [Introducing](introducing.md)
+* [Install](install.md)

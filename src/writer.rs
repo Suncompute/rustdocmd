@@ -4,11 +4,27 @@ use std::fs;
 use std::io;
 use std::path::{Path, PathBuf};
 
+fn title_from_filename(filename: &str) -> String {
+    let stem = filename.trim_end_matches(".md");
+    stem.split(|c: char| c == '-' || c == '_' || c == ' ')
+        .filter(|s| !s.is_empty())
+        .map(|w| {
+            let mut chars = w.chars();
+            match chars.next() {
+                Some(first) => first.to_uppercase().collect::<String>() + chars.as_str(),
+                None => String::new(),
+            }
+        })
+        .collect::<Vec<_>>()
+        .join(" ")
+}
+
 pub fn write_markdown_and_summary(
     blocks: &[MarkerBlock],
     target_dir: &Path,
     summary_path: &Path,
     dry_run: bool,
+    mirror_root_summary: bool,
 ) -> io::Result<()> {
     // 1. Schreibe alle .md-Dateien
     for block in blocks {
@@ -39,7 +55,8 @@ pub fn write_markdown_and_summary(
             last_index += 1;
             1000 + last_index // große Zahl = ans Ende
         });
-        let entry = format!("* [{}]({})\n", block.target_md.trim_end_matches(".md"), block.target_md);
+        let title = title_from_filename(&block.target_md);
+        let entry = format!("* [{}]({})\n", title, block.target_md);
         entries.insert(idx, (block, entry));
     }
 
@@ -56,7 +73,17 @@ pub fn write_markdown_and_summary(
             entries_count
         );
     } else {
+        // Debug: Zeige, was in SUMMARY.md geschrieben wird
+        eprintln!("[debug] writing {} with content:\n{}", summary_path.display(), new_summary);
         fs::write(summary_path, new_summary)?;
+        // Optional: Auch die SUMMARY.md im mdBook-Root aktualisieren (Kompatibilität)
+        if mirror_root_summary {
+            if let Some(root_dir) = summary_path.parent().and_then(|p| p.parent()) {
+                let root_summary = root_dir.join("SUMMARY.md");
+                eprintln!("[debug] mirroring summary to {}", root_summary.display());
+                let _ = fs::write(root_summary, fs::read_to_string(summary_path)?);
+            }
+        }
     }
 
     // 5. Entferne .md-Dateien und Einträge, die nicht mehr in blocks vorkommen

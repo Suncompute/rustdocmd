@@ -1,3 +1,4 @@
+
 /// <introducing.md(1)> "main.rs"
 /// # Willkommen zu rustdocmd
 /// 
@@ -8,6 +9,41 @@
 /// 
 /// Viel Spaß beim Testen!
 /// </introducing.md>
+/// <install.md(2)> "main.rs"
+///
+/// ## Installationsanleitung für rustdocmd
+///
+/// 1. Repository klonen:
+///    ```sh
+///    git clone https://github.com/Suncompute/rustdocmd.git
+///    cd rustdocmd/rustdocmd
+///    ```
+/// 2. Abhängigkeiten installieren und Release-Binary bauen:
+///    ```sh
+///    cargo build --release
+///    ```
+/// 3. Konfigurationsdatei `rustdocmd.toml` anlegen (falls noch nicht vorhanden):
+///    ```toml
+///    [paths]
+///    source = "./src"
+///    target = "./mdbook/src"
+///    ```
+///
+/// 4. (Optional) mdBook installieren, falls noch nicht vorhanden:
+///    ```sh
+///    cargo install mdbook
+///    ```
+/// 5. Tool ausführen:
+///    ```sh
+///    ./target/release/rustdocmd
+///    ```
+/// 6. Dokumentation lokal anzeigen:
+///    ```sh
+///    cd mdbook
+///    mdbook serve
+///    # öffne http://localhost:3000 im Browser
+///    ```
+/// </install.md>
 mod parser;
 mod config;
 mod writer;
@@ -27,6 +63,9 @@ struct Cli {
     /// Nur anzeigen, was geschrieben/entfernt würde (keine Änderungen)
     #[arg(long, default_value_t = false)]
     dry_run: bool,
+    /// Zusätzlich die SUMMARY.md im mdBook-Root spiegeln (mdbook/SUMMARY.md)
+    #[arg(long, action = clap::ArgAction::Set, default_value_t = true)]
+    mirror_root_summary: bool,
 }
 
 fn main() -> Result<()> {
@@ -68,7 +107,7 @@ fn main() -> Result<()> {
     }
 
     // Markdown-Dateien und SUMMARY.md schreiben
-    writer::write_markdown_and_summary(&all_blocks, Path::new(target_dir), &summary_path, cli.dry_run)?;
+    writer::write_markdown_and_summary(&all_blocks, Path::new(target_dir), &summary_path, cli.dry_run, cli.mirror_root_summary)?;
     // Fallback: Falls SUMMARY.md im src/-Ordner fehlt, aber im mdbook-Root existiert, kopiere sie herüber
     if !cli.dry_run {
         let root_summary = Path::new(target_dir).parent().map(|p| p.join("SUMMARY.md"));
