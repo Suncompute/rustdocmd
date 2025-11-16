@@ -10,4 +10,5 @@ So entsteht aus deinem Code und den Kommentaren eine vollständige, stets aktuel
 Das Tool befindet sich noch im Prototyp-Stadium und wird kontinuierlich weiterentwickelt.
 
 👉 [Buy Me a Coffee](https://www.buymeacoffee.com/suncompute)
+
 </readme>

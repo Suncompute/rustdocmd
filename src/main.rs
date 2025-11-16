@@ -12,14 +12,13 @@
 /// Das Tool befindet sich noch im Prototyp-Stadium und wird kontinuierlich weiterentwickelt.
 ///
 /// 👉 [Buy Me a Coffee](https://www.buymeacoffee.com/suncompute)
-
-
+///
 /// </readme>
 /// </introducing.md>
 /// <install.md(2)> "main.rs"
 ///
 /// ## Installationsanleitung für rustdocmd
-///
+/// 
 /// 1. Repository klonen:
 ///    ```sh
 ///    git clone https://github.com/Suncompute/rustdocmd.git
