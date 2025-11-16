@@ -1,3 +1,33 @@
+#[derive(Debug, Clone)]
+pub struct ReadmeBlock {
+    pub content: String,  // Inhalt für README.md
+}
+
+/// Extrahiert alle <readme>...</readme>-Blöcke aus Rustdoc-Kommentaren
+pub fn extract_readme_blocks(source: &str) -> Vec<ReadmeBlock> {
+    let doc = extract_rustdoc_comments(source);
+    let lines: Vec<&str> = doc.lines().collect();
+    let re_open = Regex::new(r"^\s*<readme><[\w\-.]+>\.md\s*$").unwrap();
+    let re_close = Regex::new(r"^\s*</[\w\-.]+></readme>\s*$").unwrap();
+    let mut blocks = Vec::new();
+    let mut i = 0;
+    while i < lines.len() {
+        if re_open.is_match(lines[i]) {
+            let mut j = i + 1;
+            while j < lines.len() && !re_close.is_match(lines[j]) {
+                j += 1;
+            }
+            if j < lines.len() {
+                let content = lines[i+1..j].join("\n").trim().to_string();
+                blocks.push(ReadmeBlock { content });
+                i = j + 1;
+                continue;
+            }
+        }
+        i += 1;
+    }
+    blocks
+}
 use regex::Regex;
 
 #[derive(Debug, Clone)]

@@ -1,3 +1,17 @@
+use crate::parser::ReadmeBlock;
+pub fn write_readme(readme_blocks: &[ReadmeBlock], readme_path: &Path, dry_run: bool) -> io::Result<()> {
+    let mut content = String::new();
+    for block in readme_blocks {
+        content.push_str(&block.content);
+        content.push_str("\n\n");
+    }
+    if dry_run {
+        println!("[dry-run] write {} ({} bytes)", readme_path.display(), content.len());
+    } else {
+        fs::write(readme_path, content.trim_end())?;
+    }
+    Ok(())
+}
 use crate::parser::MarkerBlock;
 use std::collections::BTreeMap;
 use std::fs;

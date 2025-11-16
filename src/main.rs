@@ -1,6 +1,12 @@
+/// <readme><introducing.md>.md
+/// # rustdocmd
+///
+/// rustdocmd is a tool to extract specially marked rustdoc comment blocks from your Rust source code and generate a complete, up-to-date `README.md` automatically.
+///
+/// </readme>
 /// Rustdocmd - Dokumentation aus Rust-Code mit rustdoc-Kommentaren für mdBook
 /// <introducing.md(1)> "main.rs"
-/// # Willkommen zu rustdocmd
+/// # rustdocmd
 /// 
 /// Mit diesem Tool kannst du direkt im Rust-Code mit rustdoc-Kommentaren (`///` oder `//!`) umfangreiche Dokumentation verfassen.
 /// Speziell markierte Bereiche werden automatisch extrahiert und als eigenständige Markdown-Dateien ausgegeben.
@@ -66,6 +72,32 @@
 /// Wenn ein Block im Rust Code geändert wird, aktualisiere einfach die Doku, indem du `rustdocmd` erneut ausführst.
 ///
 /// Wird ein Block entfernt, so wird die entsprechende Markdown-Datei und der Eintrag im Inhaltsverzeichnis automatisch gelöscht.
+///
+/// ## Spiegelung der SUMMARY.md (mdBook)
+///
+/// Standardmäßig schreibt und pflegt rustdocmd die Inhaltsübersicht deines mdBook unter `mdbook/src/SUMMARY.md` (das ist der Ort, den mdBook erwartet).
+/// Für mehr Kompatibilität kann diese Datei zusätzlich nach `mdbook/SUMMARY.md` (Projekt-Root) gespiegelt werden, sodass beide Versionen immer synchron sind.
+///
+/// - Standard: Spiegelung ist aktiviert.
+/// - Du kannst sie mit folgendem CLI-Flag deaktivieren:
+///
+/// ```
+/// ./target/release/rustdocmd --mirror-root-summary=false
+/// ```
+///
+/// Ist die Spiegelung deaktiviert, wird nur `mdbook/src/SUMMARY.md` aktualisiert; die Datei im Projekt-Root bleibt unberührt.
+///
+/// To include a section in your `README.md`, wrap it in a marker like this:
+///
+/// ```rust
+/// /// <readme><section.md>.md
+/// /// # My Section
+/// /// This will appear in the README.
+/// /// </section></readme>
+/// ```
+///
+/// When you run `rustdocmd --generate-readme`, all such blocks are collected and written to `README.md` (overwriting any existing content).
+/// If you do not use the `--generate-readme` flag, your `README.md` will not be changed.
 /// </example.md>
 mod parser;
 mod config;
@@ -89,6 +121,9 @@ struct Cli {
     /// Zusätzlich die SUMMARY.md im mdBook-Root spiegeln (mdbook/SUMMARY.md)
     #[arg(long, action = clap::ArgAction::Set, default_value_t = true)]
     mirror_root_summary: bool,
+    /// README.md aus <readme>-Blöcken generieren (überschreibt README.md!)
+    #[arg(long, default_value_t = false)]
+    generate_readme: bool,
 }
 
 fn main() -> Result<()> {
@@ -96,24 +131,22 @@ fn main() -> Result<()> {
     let config = RustdocmdConfig::from_file(&cli.config)?;
     let source_dir = &config.paths.source;
     let target_dir = &config.paths.target;
-    // mdBook erwartet die SUMMARY.md im src/-Ordner
     let summary_path = Path::new(target_dir).join("SUMMARY.md");
 
-    // Zielverzeichnis sicherstellen (sofern nicht dry-run)
     if !cli.dry_run {
         fs::create_dir_all(target_dir)?;
     }
 
-    // Alle .rs-Dateien rekursiv einlesen und Marker extrahieren
     let mut all_blocks = Vec::new();
     let mut parsed_files = Vec::new();
+    let mut all_readme_blocks = Vec::new();
     for entry in WalkDir::new(source_dir).into_iter().filter_map(|e| e.ok()) {
         if entry.path().extension().map(|ext| ext == "rs").unwrap_or(false) {
             let content = fs::read_to_string(entry.path())?;
-            // Debug: Zeige extrahierte Rustdoc-Kommentare
             let doc_comments = parser::extract_rustdoc_comments(&content);
             println!("\n[Rustdoc-Kommentare aus {}]:\n{}", entry.path().display(), doc_comments);
             let blocks = parser::extract_marker_blocks(&content);
+            let readme_blocks = parser::extract_readme_blocks(&content);
             if !blocks.is_empty() {
                 println!("Marker gefunden in: {}", entry.path().display());
                 for (i, block) in blocks.iter().enumerate() {
@@ -121,6 +154,7 @@ fn main() -> Result<()> {
                 }
             }
             all_blocks.extend(blocks);
+            all_readme_blocks.extend(readme_blocks);
             parsed_files.push(entry.path().display().to_string());
         }
     }
@@ -129,9 +163,12 @@ fn main() -> Result<()> {
         println!("- {}", file);
     }
 
-    // Markdown-Dateien und SUMMARY.md schreiben
     writer::write_markdown_and_summary(&all_blocks, Path::new(target_dir), &summary_path, cli.dry_run, cli.mirror_root_summary)?;
-    // Fallback: Falls SUMMARY.md im src/-Ordner fehlt, aber im mdbook-Root existiert, kopiere sie herüber
+    if cli.generate_readme {
+        let readme_path = Path::new("README.md");
+        writer::write_readme(&all_readme_blocks, readme_path, cli.dry_run)?;
+        println!("README.md wurde aus {} Block(s) generiert.", all_readme_blocks.len());
+    }
     if !cli.dry_run {
         let root_summary = Path::new(target_dir).parent().map(|p| p.join("SUMMARY.md"));
         if !summary_path.exists() {
