@@ -199,16 +199,17 @@ Für mehr Kompatibilität kann diese Datei zusätzlich nach <code>mdbook/SUMMARY
 <pre><code>./target/release/rustdocmd --mirror-root-summary=false
 </code></pre>
 <p>Ist die Spiegelung deaktiviert, wird nur <code>mdbook/src/SUMMARY.md</code> aktualisiert; die Datei im Projekt-Root bleibt unberührt.</p>
-<p>To include a section in your <code>README.md</code>, wrap it in a marker like this:</p>
+<h2 id="readmemd-generieren"><a class="header" href="#readmemd-generieren">README.md generieren</a></h2>
+<p>Um einen Abschnitt in deine <code>README.md</code> aufzunehmen, verwende einen Marker wie diesen:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>/// &lt;readme&gt;&lt;section.md&gt;.md
-/// # My Section
-/// This will appear in the README.
-/// &lt;/section&gt;&lt;/readme&gt;
+</span>/// &lt;readme&gt;
+/// # Mein Abschnitt
+/// Dieser Text erscheint in der README.
+/// &lt;/readme&gt;
 <span class="boring">}</span></code></pre></pre>
-<p>When you run <code>rustdocmd --generate-readme</code>, all such blocks are collected and written to <code>README.md</code> (overwriting any existing content).
-If you do not use the <code>--generate-readme</code> flag, your <code>README.md</code> will not be changed.</p>
+<p>Wenn du <code>rustdocmd --generate-readme</code> ausführst, werden alle solchen Blöcke gesammelt und in die <code>README.md</code> geschrieben (vorheriger Inhalt wird überschrieben).
+Ohne das Flag <code>--generate-readme</code> bleibt deine <code>README.md</code> unverändert.</p>
 
                     </main>
 

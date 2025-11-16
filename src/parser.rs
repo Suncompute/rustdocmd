@@ -7,8 +7,8 @@ pub struct ReadmeBlock {
 pub fn extract_readme_blocks(source: &str) -> Vec<ReadmeBlock> {
     let doc = extract_rustdoc_comments(source);
     let lines: Vec<&str> = doc.lines().collect();
-    let re_open = Regex::new(r"^\s*<readme><[\w\-.]+>\.md\s*$").unwrap();
-    let re_close = Regex::new(r"^\s*</[\w\-.]+></readme>\s*$").unwrap();
+    let re_open = Regex::new(r"^\s*<readme>\s*$").unwrap();
+    let re_close = Regex::new(r"^\s*</readme>\s*$").unwrap();
     let mut blocks = Vec::new();
     let mut i = 0;
     while i < lines.len() {

@@ -1,11 +1,6 @@
-/// <readme><introducing.md>.md
-/// # rustdocmd
-///
-/// rustdocmd is a tool to extract specially marked rustdoc comment blocks from your Rust source code and generate a complete, up-to-date `README.md` automatically.
-///
-/// </readme>
-/// Rustdocmd - Dokumentation aus Rust-Code mit rustdoc-Kommentaren für mdBook
+
 /// <introducing.md(1)> "main.rs"
+/// <readme>
 /// # rustdocmd
 /// 
 /// Mit diesem Tool kannst du direkt im Rust-Code mit rustdoc-Kommentaren (`///` oder `//!`) umfangreiche Dokumentation verfassen.
@@ -14,7 +9,7 @@
 /// 
 /// - Marker-Syntax: <datei.md(reihenfolge)> "quelle"
 /// - Automatische Integration in mdBook
-/// 
+/// </readme>
 /// </introducing.md>
 /// <install.md(2)> "main.rs"
 ///
@@ -87,17 +82,18 @@
 ///
 /// Ist die Spiegelung deaktiviert, wird nur `mdbook/src/SUMMARY.md` aktualisiert; die Datei im Projekt-Root bleibt unberührt.
 ///
-/// To include a section in your `README.md`, wrap it in a marker like this:
+/// ## README.md generieren
+/// Um einen Abschnitt in deine `README.md` aufzunehmen, verwende einen Marker wie diesen:
 ///
 /// ```rust
-/// /// <readme><section.md>.md
-/// /// # My Section
-/// /// This will appear in the README.
-/// /// </section></readme>
+/// /// <readme>
+/// /// # Mein Abschnitt
+/// /// Dieser Text erscheint in der README.
+/// /// </readme>
 /// ```
 ///
-/// When you run `rustdocmd --generate-readme`, all such blocks are collected and written to `README.md` (overwriting any existing content).
-/// If you do not use the `--generate-readme` flag, your `README.md` will not be changed.
+/// Wenn du `rustdocmd --generate-readme` ausführst, werden alle solchen Blöcke gesammelt und in die `README.md` geschrieben (vorheriger Inhalt wird überschrieben).
+/// Ohne das Flag `--generate-readme` bleibt deine `README.md` unverändert.
 /// </example.md>
 mod parser;
 mod config;

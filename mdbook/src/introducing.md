@@ -1,3 +1,4 @@
+<readme>
 # rustdocmd
 
 Mit diesem Tool kannst du direkt im Rust-Code mit rustdoc-Kommentaren (`///` oder `//!`) umfangreiche Dokumentation verfassen.
@@ -6,3 +7,4 @@ So entsteht aus deinem Code und den Kommentaren eine vollständige, versionierte
 
 - Marker-Syntax: <datei.md(reihenfolge)> "quelle"
 - Automatische Integration in mdBook
+</readme>
