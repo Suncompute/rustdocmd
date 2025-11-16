@@ -1,4 +1,3 @@
-
 /// <introducing.md(1)> "main.rs"
 /// <readme>
 /// rustdocmd
