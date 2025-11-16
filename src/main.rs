@@ -63,6 +63,9 @@
 ///
 /// Du kannst beliebig viele solcher Marker-Blöcke in deinem Code verwenden, um die Doku zu strukturieren.
 ///
+/// Wenn ein Block im Rust Code geändert wird, aktualisiere einfach die Doku, indem du `rustdocmd` erneut ausführst.
+///
+/// Wird ein Block entfernt, so wird die entsprechende Markdown-Datei und der Eintrag im Inhaltsverzeichnis automatisch gelöscht.
 /// </example.md>
 mod parser;
 mod config;
