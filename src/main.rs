@@ -98,6 +98,30 @@
 ///
 /// If mirroring is disabled, only `mdbook/src/SUMMARY.md` will be updated; the file in the project root will remain untouched.
 /// </example.md>
+/// <plugins.md(4)> "main.rs"
+///
+/// ## Mermaid diagrams & SVG generation
+///
+/// To automatically generate SVGs from Mermaid code blocks, install mermaid-cli:
+///
+/// ```sh
+/// npm install -g @mermaid-js/mermaid-cli
+/// ```
+///
+/// SVGs will be generated and embedded in your documentation if mermaid-cli (mmdc) is available.
+///
+/// ---
+///
+/// **Disable SVG generation:**
+///
+/// You can disable automatic SVG generation from Mermaid blocks with:
+///
+/// ```sh
+/// ./target/release/rustdocmd --generate-mermaid-svg=false
+/// ```
+///
+/// By default, SVGs are generated if mermaid-cli is installed.
+/// </plugins.md>
 mod parser;
 mod config;
 mod writer;
@@ -123,6 +147,9 @@ struct Cli {
     /// README.md aus <readme>-Blöcken generieren (überschreibt README.md!)
     #[arg(long, default_value_t = false)]
     generate_readme: bool,
+    /// Generate SVGs from Mermaid code blocks (requires mermaid-cli/mmdc)
+    #[arg(long, default_value_t = true)]
+    generate_mermaid_svg: bool,
 }
 
 fn main() -> Result<()> {
@@ -162,7 +189,7 @@ fn main() -> Result<()> {
         println!("- {}", file);
     }
 
-    writer::write_markdown_and_summary(&all_blocks, Path::new(target_dir), &summary_path, cli.dry_run, cli.mirror_root_summary)?;
+    writer::write_markdown_and_summary(&all_blocks, Path::new(target_dir), &summary_path, cli.dry_run, cli.mirror_root_summary, cli.generate_mermaid_svg)?;
     if cli.generate_readme {
         let readme_path = Path::new("README.md");
         writer::write_readme(&all_readme_blocks, readme_path, cli.dry_run)?;
