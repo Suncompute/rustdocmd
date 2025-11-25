@@ -1,6 +1,6 @@
 /// <introducing.md(1)> "main.rs"
 /// <readme>
-/// rustdocmd
+/// rustdocmd Test
 ///
 /// With this tool, you can write comprehensive, versioned documentation directly in your Rust code using rustdoc comments (`///` or `//!`).
 ///

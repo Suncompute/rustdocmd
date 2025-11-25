@@ -1,4 +1,4 @@
-rustdocmd
+rustdocmd Test
 
 With this tool, you can write comprehensive, versioned documentation directly in your Rust code using rustdoc comments (`///` or `//!`).
 

@@ -2,7 +2,11 @@ use crate::parser::ReadmeBlock;
 pub fn write_readme(readme_blocks: &[ReadmeBlock], readme_path: &Path, dry_run: bool) -> io::Result<()> {
     let mut content = String::new();
     for block in readme_blocks {
-        content.push_str(&block.content);
+        // Remove <readme> and </readme> tags from the block content
+        let cleaned = block.content
+            .replace("<readme>", "")
+            .replace("</readme>", "");
+        content.push_str(cleaned.trim());
         content.push_str("\n\n");
     }
     if dry_run {
@@ -43,14 +47,18 @@ pub fn write_markdown_and_summary(
     // 1. Schreibe alle .md-Dateien
     for block in blocks {
         let md_path = target_dir.join(&block.target_md);
+        // Remove <readme> and </readme> tags from the block content
+        let cleaned = block.content
+            .replace("<readme>", "")
+            .replace("</readme>", "");
         if dry_run {
             println!(
                 "[dry-run] write {} ({} bytes)",
                 md_path.display(),
-                block.content.len()
+                cleaned.len()
             );
         } else {
-            fs::write(&md_path, &block.content)?;
+            fs::write(&md_path, cleaned.trim())?;
         }
     }
 

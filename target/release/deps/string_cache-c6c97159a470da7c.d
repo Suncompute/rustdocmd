@@ -1,0 +1,11 @@
+/home/bruno/rustdocmd/rustdocmd/target/release/deps/string_cache-c6c97159a470da7c.d: /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/lib.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/atom.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/dynamic_set.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/static_sets.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/trivial_impls.rs
+
+/home/bruno/rustdocmd/rustdocmd/target/release/deps/libstring_cache-c6c97159a470da7c.rlib: /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/lib.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/atom.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/dynamic_set.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/static_sets.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/trivial_impls.rs
+
+/home/bruno/rustdocmd/rustdocmd/target/release/deps/libstring_cache-c6c97159a470da7c.rmeta: /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/lib.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/atom.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/dynamic_set.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/static_sets.rs /home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/trivial_impls.rs
+
+/home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/lib.rs:
+/home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/atom.rs:
+/home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/dynamic_set.rs:
+/home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/static_sets.rs:
+/home/bruno/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/string_cache-0.8.9/src/trivial_impls.rs:

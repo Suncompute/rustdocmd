@@ -22,10 +22,10 @@ If a block is removed, the corresponding Markdown file and the entry in the tabl
 To include a section in your `README.md`, use a marker like this:
 
 ```rust
-/// <readme>
+/// 
 /// # My Section
 /// This text will appear in the README.
-/// </readme>
+/// 
 ```
 
 When you run `rustdocmd --generate-readme`, all such blocks are collected and written to `README.md` (previous content will be overwritten).

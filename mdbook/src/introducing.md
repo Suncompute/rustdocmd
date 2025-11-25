@@ -1,5 +1,4 @@
-<readme>
-rustdocmd
+rustdocmd Test
 
 With this tool, you can write comprehensive, versioned documentation directly in your Rust code using rustdoc comments (`///` or `//!`).
 
@@ -10,5 +9,3 @@ This way, your code and comments become a complete, always up-to-date documentat
 The tool is still in a prototype stage and is continuously being developed.
 
 👉 [Buy Me a Coffee](https://www.buymeacoffee.com/suncompute)
-
-</readme>
