@@ -102,13 +102,27 @@
 ///
 /// ## Mermaid diagrams & SVG generation
 ///
-/// To automatically generate SVGs from Mermaid code blocks, install mermaid-cli:
+/// To automatically generate SVGs from Mermaid code blocks, you need to install mermaid-cli **and** Chrome/Chromium:
 ///
 /// ```sh
 /// npm install -g @mermaid-js/mermaid-cli
+/// # Chrome/Chromium is required for rendering!
+/// npx puppeteer browsers install chrome-headless-shell
+/// export PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+/// # On Ubuntu/Debian:
+/// sudo apt install chromium-browser
+/// # On Fedora:
+/// sudo dnf install chromium
+/// # Or download Chrome from https://www.google.com/chrome/
 /// ```
 ///
-/// SVGs will be generated and embedded in your documentation if mermaid-cli (mmdc) is available.
+/// If mmdc cannot find Chrome, you may need to run:
+///
+/// ```sh
+/// npx puppeteer browsers install chrome-headless-shell
+/// ```
+///
+/// SVGs will be generated and embedded in your documentation if mermaid-cli (mmdc) and Chrome/Chromium are available.
 ///
 /// ---
 ///
@@ -120,7 +134,7 @@
 /// ./target/release/rustdocmd --generate-mermaid-svg=false
 /// ```
 ///
-/// By default, SVGs are generated if mermaid-cli is installed.
+/// By default, SVGs are generated if mermaid-cli and Chrome/Chromium are installed.
 /// </plugins.md>
 mod parser;
 mod config;
