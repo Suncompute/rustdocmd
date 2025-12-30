@@ -1,6 +1,6 @@
 #[derive(Debug, Clone)]
 pub struct ReadmeBlock {
-    pub content: String,  // Inhalt für README.md
+    pub content: String, // Inhalt für README.md
 }
 
 /// Extrahiert alle <readme>...</readme>-Blöcke aus Rustdoc-Kommentaren
@@ -18,7 +18,7 @@ pub fn extract_readme_blocks(source: &str) -> Vec<ReadmeBlock> {
                 j += 1;
             }
             if j < lines.len() {
-                let content = lines[i+1..j].join("\n").trim().to_string();
+                let content = lines[i + 1..j].join("\n").trim().to_string();
                 blocks.push(ReadmeBlock { content });
                 i = j + 1;
                 continue;
@@ -32,10 +32,10 @@ use regex::Regex;
 
 #[derive(Debug, Clone)]
 pub struct MarkerBlock {
-    pub target_md: String,      // z.B. "test.md"
-    pub order: Option<usize>,  // z.B. 1
-    pub source_ref: String,    // z.B. "code.md" oder leer
-    pub content: String,       // extrahierter Inhalt
+    pub target_md: String,    // z.B. "test.md"
+    pub order: Option<usize>, // z.B. 1
+    pub source_ref: String,   // z.B. "code.md" oder leer
+    pub content: String,      // extrahierter Inhalt
 }
 
 /// Extrahiert alle Marker-Blöcke aus Rustdoc-Kommentaren (blockweise, Zeilenumbrüche erlaubt)
@@ -50,16 +50,25 @@ pub fn extract_marker_blocks(source: &str) -> Vec<MarkerBlock> {
         if let Some(cap) = re_open.captures(lines[i]) {
             let tag = cap[1].to_string();
             let order = cap.get(2).and_then(|m| m.as_str().parse::<usize>().ok());
-            let source_ref = cap.get(3).map(|m| m.as_str().to_string()).unwrap_or_default();
+            let source_ref = cap
+                .get(3)
+                .map(|m| m.as_str().to_string())
+                .unwrap_or_default();
             // Suche nach passendem schließenden Tag ab der nächsten Zeile
             let re_close = Regex::new(&format!(r#"^\s*</{}>\s*$"#, regex::escape(&tag))).unwrap();
             let mut j = i + 1;
             while j < lines.len() && !re_close.is_match(lines[j]) {
                 j += 1;
             }
-            if j < lines.len() { // schließendes Tag gefunden
-                let content = lines[i+1..j].join("\n").trim().to_string();
-                blocks.push(MarkerBlock { target_md: tag, order, source_ref, content });
+            if j < lines.len() {
+                // schließendes Tag gefunden
+                let content = lines[i + 1..j].join("\n").trim().to_string();
+                blocks.push(MarkerBlock {
+                    target_md: tag,
+                    order,
+                    source_ref,
+                    content,
+                });
                 i = j + 1; // weiter nach dem schließenden Tag
                 continue;
             } else {
@@ -80,7 +89,9 @@ pub fn extract_rustdoc_comments(source: &str) -> String {
                 Some(rest.trim())
             } else if let Some(rest) = line.strip_prefix("//!") {
                 Some(rest.trim())
-            } else { None }
+            } else {
+                None
+            }
         })
         .collect::<Vec<_>>()
         .join("\n")

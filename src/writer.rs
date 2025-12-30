@@ -1,12 +1,20 @@
 use crate::parser::ReadmeBlock;
-pub fn write_readme(readme_blocks: &[ReadmeBlock], readme_path: &Path, dry_run: bool) -> io::Result<()> {
+pub fn write_readme(
+    readme_blocks: &[ReadmeBlock],
+    readme_path: &Path,
+    dry_run: bool,
+) -> io::Result<()> {
     let mut content = String::new();
     for block in readme_blocks {
         content.push_str(&block.content);
         content.push_str("\n\n");
     }
     if dry_run {
-        println!("[dry-run] write {} ({} bytes)", readme_path.display(), content.len());
+        println!(
+            "[dry-run] write {} ({} bytes)",
+            readme_path.display(),
+            content.len()
+        );
     } else {
         fs::write(readme_path, content.trim_end())?;
     }
@@ -88,7 +96,11 @@ pub fn write_markdown_and_summary(
         );
     } else {
         // Debug: Zeige, was in SUMMARY.md geschrieben wird
-        eprintln!("[debug] writing {} with content:\n{}", summary_path.display(), new_summary);
+        eprintln!(
+            "[debug] writing {} with content:\n{}",
+            summary_path.display(),
+            new_summary
+        );
         fs::write(summary_path, new_summary)?;
         // Optional: Auch die SUMMARY.md im mdBook-Root aktualisieren (Kompatibilität)
         if mirror_root_summary {
@@ -109,7 +121,10 @@ pub fn write_markdown_and_summary(
             .collect::<Vec<_>>(),
         Err(_) => Vec::new(),
     };
-    let valid_files: Vec<PathBuf> = blocks.iter().map(|b| target_dir.join(&b.target_md)).collect();
+    let valid_files: Vec<PathBuf> = blocks
+        .iter()
+        .map(|b| target_dir.join(&b.target_md))
+        .collect();
     for file in existing_files {
         if !valid_files.contains(&file) {
             if dry_run {

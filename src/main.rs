@@ -1,3 +1,4 @@
+mod config;
 /// <introducing.md(1)> "main.rs"
 /// <readme>
 /// rustdocmd
@@ -99,7 +100,6 @@
 /// If mirroring is disabled, only `mdbook/src/SUMMARY.md` will be updated; the file in the project root will remain untouched.
 /// </example.md>
 mod parser;
-mod config;
 mod writer;
 
 use anyhow::Result;
@@ -140,16 +140,32 @@ fn main() -> Result<()> {
     let mut parsed_files = Vec::new();
     let mut all_readme_blocks = Vec::new();
     for entry in WalkDir::new(source_dir).into_iter().filter_map(|e| e.ok()) {
-        if entry.path().extension().map(|ext| ext == "rs").unwrap_or(false) {
+        if entry
+            .path()
+            .extension()
+            .map(|ext| ext == "rs")
+            .unwrap_or(false)
+        {
             let content = fs::read_to_string(entry.path())?;
             let doc_comments = parser::extract_rustdoc_comments(&content);
-            println!("\n[Rustdoc-Kommentare aus {}]:\n{}", entry.path().display(), doc_comments);
+            println!(
+                "\n[Rustdoc-Kommentare aus {}]:\n{}",
+                entry.path().display(),
+                doc_comments
+            );
             let blocks = parser::extract_marker_blocks(&content);
             let readme_blocks = parser::extract_readme_blocks(&content);
             if !blocks.is_empty() {
                 println!("Marker gefunden in: {}", entry.path().display());
                 for (i, block) in blocks.iter().enumerate() {
-                    println!("  Block {}: target_md={}, order={:?}, source_ref='{}', content='{}'", i+1, block.target_md, block.order, block.source_ref, block.content);
+                    println!(
+                        "  Block {}: target_md={}, order={:?}, source_ref='{}', content='{}'",
+                        i + 1,
+                        block.target_md,
+                        block.order,
+                        block.source_ref,
+                        block.content
+                    );
                 }
             }
             all_blocks.extend(blocks);
@@ -162,11 +178,20 @@ fn main() -> Result<()> {
         println!("- {}", file);
     }
 
-    writer::write_markdown_and_summary(&all_blocks, Path::new(target_dir), &summary_path, cli.dry_run, cli.mirror_root_summary)?;
+    writer::write_markdown_and_summary(
+        &all_blocks,
+        Path::new(target_dir),
+        &summary_path,
+        cli.dry_run,
+        cli.mirror_root_summary,
+    )?;
     if cli.generate_readme {
         let readme_path = Path::new("README.md");
         writer::write_readme(&all_readme_blocks, readme_path, cli.dry_run)?;
-        println!("README.md wurde aus {} Block(s) generiert.", all_readme_blocks.len());
+        println!(
+            "README.md wurde aus {} Block(s) generiert.",
+            all_readme_blocks.len()
+        );
     }
     if !cli.dry_run {
         let root_summary = Path::new(target_dir).parent().map(|p| p.join("SUMMARY.md"));
